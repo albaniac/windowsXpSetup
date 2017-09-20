@@ -63,7 +63,6 @@ import win32netcon
 import wmi
 import win32gui
 
-
 __author__ = '''Costas Tyfoxylos <costas.tyf@gmail.com>'''
 __docformat__ = '''plaintext'''
 __date__ = '''07/10/2010'''
@@ -134,9 +133,9 @@ class WindowsXp(object):
                      'full_name': full_name,
                      'password': password,
                      'flags': win32netcon.UF_NORMAL_ACCOUNT |
-                         win32netcon.UF_SCRIPT |
-                         win32netcon.UF_DONT_EXPIRE_PASSWD |
-                         win32netcon.UF_PASSWD_CANT_CHANGE,
+                              win32netcon.UF_SCRIPT |
+                              win32netcon.UF_DONT_EXPIRE_PASSWD |
+                              win32netcon.UF_PASSWD_CANT_CHANGE,
                      'priv': win32netcon.USER_PRIV_USER,
                      'home_dir': os.path.join(r"C:\Documents and Settings",
                                               name)}
@@ -334,17 +333,18 @@ class WindowsXp(object):
             return False
         try:
             conf_text = file(
-                r'c:\Program Files\Pyla\profiles\pylarc.default', 'rb').read()
+                    r'c:\Program Files\Pyla\profiles\pylarc.default',
+                    'rb').read()
             conf_text = conf_text.replace('username=', 'username=' + username)
             conf_text = conf_text.replace('password=', 'password=' + password)
             conf_text = conf_text.replace(
-                'emailaddress=', 'emailaddress=' + email)
+                    'emailaddress=', 'emailaddress=' + email)
             conf_text = conf_text.replace('faxhost=', 'faxhost=' + hostname)
             if modem_list:
                 conf_text = conf_text.replace(
-                    'modemlist=', 'modemlist=' + modem_list + '\n')
+                        'modemlist=', 'modemlist=' + modem_list + '\n')
             conf_file = file(
-                r'c:\Program Files\Pyla\profiles\pylarc.default', 'wb')
+                    r'c:\Program Files\Pyla\profiles\pylarc.default', 'wb')
             conf_file.write(conf_text)
             conf_file.close()
             return True
@@ -582,6 +582,7 @@ class WindowsXp(object):
                                      username,
                                      password,
                                      flag)
+
     @staticmethod
     def unmap_network_drive(drive_letter="X:"):
         try:
